@@ -18,9 +18,22 @@ local function insert_shebang()
     }
 
     local ext = vim.fn.expand("%:e")
-    if shells[ext] ~= nil then
-        local shebang = "#!/usr/bin/env " .. shells[ext]
-        vim.api.nvim_put({shebang}, "", true, true)
+
+    local custom_shells = vim.api.nvim_get_var('shebang_shells')
+    local custom_commands = vim.api.nvim_get_var('shebang_commands')
+
+    local shebang = nil
+
+    if custom_commands ~= nil and custom_commands[ext] ~= nil then
+        shebang = custom_commands[ext]
+    elseif custom_shells ~= nil and custom_shells[ext] ~= nil then
+        shebang = custom_shells[ext]
+    elseif shells[ext] ~= nil then
+        shebang = "/usr/bin/env " .. shells[ext]
+    end
+
+    if shebang ~= nil then
+        vim.api.nvim_put({"#!" .. shebang}, "", true, true)
         vim.fn.append(1, '')
         vim.fn.cursor(2, 0)
     end
