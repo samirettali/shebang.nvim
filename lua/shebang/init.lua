@@ -1,3 +1,10 @@
+local function get_var(var_name)
+  s, v = pcall(function()
+    return vim.api.nvim_get_var(var_name)
+  end)
+  if s then return v else return nil end
+end
+
 local function insert_shebang()
     local shells = {
         awk = "awk",
@@ -19,15 +26,15 @@ local function insert_shebang()
 
     local ext = vim.fn.expand("%:e")
 
-    local custom_shells = vim.api.nvim_get_var('shebang_shells')
-    local custom_commands = vim.api.nvim_get_var('shebang_commands')
+    local custom_commands = get_var('shebang_commands')
+    local custom_shells = get_var('shebang_shells')
 
     local shebang = nil
 
     if custom_commands ~= nil and custom_commands[ext] ~= nil then
         shebang = custom_commands[ext]
     elseif custom_shells ~= nil and custom_shells[ext] ~= nil then
-        shebang = custom_shells[ext]
+        shebang = "/usr/bin/env " .. custom_shells[ext]
     elseif shells[ext] ~= nil then
         shebang = "/usr/bin/env " .. shells[ext]
     end
