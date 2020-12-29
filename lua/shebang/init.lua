@@ -22,6 +22,7 @@ local function insert_shebang()
         local shebang = "#!/usr/bin/env " .. shells[ext]
         vim.api.nvim_put({shebang}, "", true, true)
         vim.fn.append(1, '')
+        vim.fn.cursor(2, 0)
     end
 end
 
