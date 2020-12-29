@@ -5,9 +5,8 @@ when editing a new file.
 
 ## Installation
 
-### vim-plug
 ```VimL
-Plug 'jacobsimpson/nvim-example-python-plugin'
+Plug 'samirettali/shebang.nvim'
 ```
 
 ## Customization
