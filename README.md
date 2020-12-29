@@ -31,5 +31,5 @@ You can set custom shells by setting the global variables `shebang_shells` and
 ```
 
 The difference between the two is that the executables in `shebang_shells` have
-to be in the `PATH` environment variable, while the in `shebang_commands` you
+must be in the `PATH` environment variable, while the in `shebang_commands` you
 can use full paths to the executable.
