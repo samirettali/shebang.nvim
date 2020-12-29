@@ -16,18 +16,18 @@ You can set custom shells by setting the global variables `shebang_shells` and
 
 ### vimscript
 ```VimL
-    let g:shebang_commands = { 'py': '/usr/bin/python3.9' }
-    let g:shebang_shells = { 'py': 'python3.9' }
+let g:shebang_commands = { 'py': '/usr/bin/python3.9' }
+let g:shebang_shells = { 'py': 'python3.9' }
 ```
 
 ### lua
 ```lua
-    vim.g.shebang_commands = {
-        py = '/usr/bin/python3.9'
-    }
-    vim.g.shebang_shells = {
-        py = 'python3.9'
-    }
+vim.g.shebang_commands = {
+    py = '/usr/bin/python3.9'
+}
+vim.g.shebang_shells = {
+    py = 'python3.9'
+}
 ```
 
 The difference between the two is that the executables in `shebang_shells` have
