@@ -40,6 +40,7 @@ local function insert_shebang()
     end
 
     if shebang ~= nil then
+        vim.cmd [[ autocmd BufWritePost *.* :autocmd VimLeave * :!chmod u+x % ]]
         vim.api.nvim_put({"#!" .. shebang}, "", true, true)
         vim.fn.append(1, '')
         vim.fn.cursor(2, 0)
